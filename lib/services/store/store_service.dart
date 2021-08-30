@@ -48,5 +48,16 @@ class StoreService {
   }
 
 
-
+  // Todo: getting the wopping track that only did today
+  Stream<QuerySnapshot> getTodayTracks(String userId) {
+    var today = DateTime.now();
+    var onlyDateTime = DateTime(today.year,today.month,today.day,);
+    var onlyDateNight = DateTime(today.year,today.month,today.day,24,60,60);
+    var todayMorningTimeStamp = Timestamp.fromDate(onlyDateTime);
+    var todayNightTimeStamp = Timestamp.fromDate(onlyDateNight);
+    return fireStore.collection(userId)
+        .orderBy("track_date",descending: true)
+        .where("track_date",isGreaterThan: todayMorningTimeStamp,isLessThan: todayNightTimeStamp)
+        .snapshots();
+  }
 }

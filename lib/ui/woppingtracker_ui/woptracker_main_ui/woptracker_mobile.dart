@@ -6,7 +6,6 @@ import 'package:woptracker/services/auth/auth_service.dart';
 import 'package:woptracker/services/store/store_service.dart';
 import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_detail_ui/woptracker_detail_mobile_ui.dart';
 import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_google_map_main_ui/WopTrackerMainGoogleMapBaseWidgetWrapperUI.dart';
-import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_google_map_main_ui/WopTrackerMainGoogleMapUI.dart';
 import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_utils/woptracker_add_ui_wrapper.dart';
 import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_welcome_ui/woptracker_welcome_mobile_ui.dart';
 
@@ -89,6 +88,7 @@ class _WopTrackerMobileUIState extends State<WopTrackerMobileUI> {
             controller: _scrollController,
             children: widget.listDocumentSnapshot.map((DocumentSnapshot document) {
               Map<String,dynamic> data = document.data()! as Map<String,dynamic>;
+              print(data["track_date"]);
               return Padding(
                 padding: EdgeInsets.fromLTRB(4.0, 8.0, 4.0, 8.0),
                 child: Card(
@@ -156,10 +156,12 @@ class _WopTrackerMobileUIState extends State<WopTrackerMobileUI> {
             }).toList(),
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(16.0, 0.0, 0.0, 16.0),
+            padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 16.0),
             child: Align(
-              alignment: Alignment.bottomLeft,
+              alignment: Alignment.bottomCenter,
               child: (_isScrolled) ? Container(
+                width: 64.0,
+                height: 64.0,
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.blueAccent

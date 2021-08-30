@@ -5,7 +5,8 @@ import 'package:woptracker/main.dart';
 import 'package:woptracker/ui/auth_ui/signin_ui/signinbasewrapper.dart';
 import 'package:woptracker/ui/basewidget.dart';
 import 'package:woptracker/ui/loading/loading.dart';
-import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_wrapper/woppingtracker_wrapper.dart';
+import 'package:woptracker/ui/woppingtracker_ui/woptracker_summary_ui/woptracker_summary_wrapper/woptracker_summary_stream_wrapper_ui.dart';
+import 'package:woptracker/ui/woppingtracker_ui/woptracker_summary_ui/woptracker_summary_wrapper/woptracker_summary_wrapper_ui.dart';
 class AuthWrapper extends StatelessWidget {
   const AuthWrapper({Key? key}) : super(key: key);
 
@@ -24,7 +25,7 @@ class AuthWrapper extends StatelessWidget {
                 if (_user.data!.value == null) {
                   return SignInUIWrapper();
                 } else {
-                  return WopTrackerWrapperUI();
+                  return WopTrackerSummaryStreamWrapperUI(user: _user.data!.value!,);
                 }
               } else {
                 return Loading();
