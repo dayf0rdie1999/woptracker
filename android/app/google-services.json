@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "743328582132",
+    "project_id": "woppingtracker",
+    "storage_bucket": "woppingtracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743328582132:android:c09bb4f0b6fa9fbee491a1",
+        "android_client_info": {
+          "package_name": "com.paulduonganh.wonging_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743328582132-og62cfvtd3h791purk20b4hdh15u6crq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.paulduonganh.wonging_tracker",
+            "certificate_hash": "d3438e801dc64555c382744804a3be164ceb092e"
+          }
+        },
+        {
+          "client_id": "743328582132-7f8ohi0tjak36ntfv2fimtrb3al38me0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt88SR22YBwPu5x7lz1Ye_VIf3z-w3sH4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743328582132-7f8ohi0tjak36ntfv2fimtrb3al38me0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
