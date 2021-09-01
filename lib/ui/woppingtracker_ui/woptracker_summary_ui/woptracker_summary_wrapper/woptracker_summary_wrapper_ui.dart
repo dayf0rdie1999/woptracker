@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:woptracker/enums/devicescreentype.dart';
 import 'package:woptracker/ui/basewidget.dart';
+import 'package:woptracker/ui/woppingtracker_ui/woptracker_summary_ui/woptracker_summary_desktop_ui.dart';
 import 'package:woptracker/ui/woppingtracker_ui/woptracker_summary_ui/woptracker_summary_mobile_ui.dart';
 
 class WopTrackerSummaryWrapperUI extends StatelessWidget {
@@ -18,11 +19,11 @@ class WopTrackerSummaryWrapperUI extends StatelessWidget {
     return BaseWidget(
         builder: (context, sizingInformation) {
           if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-           return WopTrackerSummaryMobileUI(user: user,);
+           return WopTrackerSummaryMobileUI(user: user, documents: documents,);
           } else if (sizingInformation.deviceScreenType == DeviceScreenType.Tablet) {
-            return Text("Tablet Screen Size");
+            return WopTrackerSummaryMobileUI(user: user, documents: documents,);
           } else{
-            return Text("Desktop Screen Size");
+            return WopTrackerSummaryDesktopUI(user: user, documents: documents);
           }
         }
     );

@@ -46,7 +46,7 @@ class _WopTrackerSummaryStreamWrapperUIState extends State<WopTrackerSummaryStre
 
         if (snapshots.connectionState == ConnectionState.active) {
           if (snapshots.data != null) {
-            print(snapshots.data!.docs);
+
             return WopTrackerSummaryWrapperUI(user: widget.user,documents: snapshots.data!.docs,);
           } else {
             return Loading();

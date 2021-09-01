@@ -41,6 +41,7 @@ dependencies:
   cloud_firestore: ^2.4.0
   http: ^0.13.3
   great_circle_distance2: ^1.0.1+1
+  percent_indicator: ^2.1.7+2
 
 
 

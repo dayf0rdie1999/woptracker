@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:woptracker/services/store/store_service.dart';
 import 'package:woptracker/ui/loading/loading.dart';
@@ -8,9 +9,9 @@ import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_we
 
 class WopTrackerStreamMobileUI extends StatefulWidget {
 
-  final String userId;
+  final User user;
 
-  const WopTrackerStreamMobileUI({Key? key, required this.userId}) : super(key: key);
+  const WopTrackerStreamMobileUI({Key? key, required this.user}) : super(key: key);
 
   @override
   _WopTrackerStreamMobileUIState createState() => _WopTrackerStreamMobileUIState();
@@ -30,7 +31,7 @@ class _WopTrackerStreamMobileUIState extends State<WopTrackerStreamMobileUI> {
   }
 
   Stream<QuerySnapshot> getStreamQuerySnapshot() {
-    return _storeService.getTracks(widget.userId);
+    return _storeService.getTracks(widget.user.uid);
   }
 
   @override
@@ -41,7 +42,7 @@ class _WopTrackerStreamMobileUIState extends State<WopTrackerStreamMobileUI> {
         if(snapshot.connectionState == ConnectionState.active) {
           List<QueryDocumentSnapshot> documents = snapshot.data!.docs;
 
-          return WopTrackerMobileUI(userId: widget.userId, listDocumentSnapshot: documents,);
+          return WopTrackerMobileUI(user: widget.user, listDocumentSnapshot: documents,);
         }
 
         if(snapshot.hasError) {

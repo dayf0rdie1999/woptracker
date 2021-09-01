@@ -5,12 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:woptracker/services/auth/auth_service.dart';
 import 'package:woptracker/services/store/store_service.dart';
-import 'package:woptracker/ui/woppingtracker_ui/google_map_ui/googlemapwrapperui.dart';
 import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_detail_ui/woptracker_detail_desktop_ui.dart';
-import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_detail_ui/woptracker_detail_mobile_ui.dart';
-import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_google_map_main_ui/WopTrackerMainGoogleMapUI.dart';
 import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_utils/woptracker_add_ui_wrapper.dart';
 import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_utils_ui/header_title_ui.dart';
+import 'package:woptracker/ui/woppingtracker_ui/woptracker_summary_ui/woptracker_summary_wrapper/woptracker_summary_stream_wrapper_ui.dart';
 
 
 class WopTrackerDesktopUI extends StatefulWidget {
@@ -140,7 +138,19 @@ class _WopTrackerDesktopUIState extends State<WopTrackerDesktopUI> {
                     title: Text("Sign Out"),
                     trailing: Icon(Icons.logout),
                   ),
-                )
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => WopTrackerSummaryStreamWrapperUI(user: widget.user)),
+                    );
+                  },
+                  child: ListTile(
+                    title: Text("Daily Summary"),
+                    trailing: Icon(Icons.summarize),
+                  ),
+                ),
               ],
             ),
           ),

@@ -12,6 +12,7 @@ import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_go
 import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_google_map_main_ui/WopTrackerMainGoogleMapUI.dart';
 import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_utils/woptracker_add_ui_wrapper.dart';
 import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_welcome_ui/woptracker_welcome_mobile_ui.dart';
+import 'package:woptracker/ui/woppingtracker_ui/woptracker_summary_ui/woptracker_summary_wrapper/woptracker_summary_stream_wrapper_ui.dart';
 
 
 class WopTrackerTabletUI extends StatefulWidget {
@@ -153,6 +154,18 @@ class _WopTrackerTabletUIState extends State<WopTrackerTabletUI> {
                   child: ListTile(
                     title: Text("Sign Out"),
                     trailing: Icon(Icons.logout),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => WopTrackerSummaryStreamWrapperUI(user: widget.user)),
+                    );
+                  },
+                  child: ListTile(
+                    title: Text("Daily Summary"),
+                    trailing: Icon(Icons.summarize),
                   ),
                 ),
               ],

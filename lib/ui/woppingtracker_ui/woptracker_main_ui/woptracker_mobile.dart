@@ -8,15 +8,16 @@ import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_de
 import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_google_map_main_ui/WopTrackerMainGoogleMapBaseWidgetWrapperUI.dart';
 import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_utils/woptracker_add_ui_wrapper.dart';
 import 'package:woptracker/ui/woppingtracker_ui/woptracker_main_ui/woptracker_welcome_ui/woptracker_welcome_mobile_ui.dart';
+import 'package:woptracker/ui/woppingtracker_ui/woptracker_summary_ui/woptracker_summary_wrapper/woptracker_summary_stream_wrapper_ui.dart';
 
 
 class WopTrackerMobileUI extends StatefulWidget {
 
-  final String userId;
+  final User user;
 
   final List<QueryDocumentSnapshot> listDocumentSnapshot;
 
-  const WopTrackerMobileUI({Key? key, required this.userId, required this.listDocumentSnapshot}) : super(key: key);
+  const WopTrackerMobileUI({Key? key, required this.user, required this.listDocumentSnapshot}) : super(key: key);
 
   @override
   _WopTrackerMobileUIState createState() => _WopTrackerMobileUIState();
@@ -80,6 +81,14 @@ class _WopTrackerMobileUIState extends State<WopTrackerMobileUI> {
             },
           )
         ],
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => WopTrackerSummaryStreamWrapperUI(user: widget.user)),
+            );
+          },
+          icon: Icon(Icons.summarize),
+        ),
       ),
       body:
       (widget.listDocumentSnapshot.length != 0) ? Stack(
@@ -88,7 +97,7 @@ class _WopTrackerMobileUIState extends State<WopTrackerMobileUI> {
             controller: _scrollController,
             children: widget.listDocumentSnapshot.map((DocumentSnapshot document) {
               Map<String,dynamic> data = document.data()! as Map<String,dynamic>;
-              print(data["track_date"]);
+
               return Padding(
                 padding: EdgeInsets.fromLTRB(4.0, 8.0, 4.0, 8.0),
                 child: Card(
@@ -107,10 +116,10 @@ class _WopTrackerMobileUIState extends State<WopTrackerMobileUI> {
                               if (result == "Edit") {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => WopTrackerAddUIWrapper(userId: widget.userId,docId: document.id,editMode: true,))
+                                  MaterialPageRoute(builder: (context) => WopTrackerAddUIWrapper(userId: widget.user.uid,docId: document.id,editMode: true,))
                                 );
                               } else if (result == "Delete") {
-                                String? result = await _storeService.deleteTracker(widget.userId, document.id);
+                                String? result = await _storeService.deleteTracker(widget.user.uid, document.id);
 
                                 if (result == null) {
                                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -179,11 +188,11 @@ class _WopTrackerMobileUIState extends State<WopTrackerMobileUI> {
       ) : WopTrackerWelcomeUI(),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          String? result = await _storeService.createEmptyTracker(widget.userId);
+          String? result = await _storeService.createEmptyTracker(widget.user.uid);
           if (result != null) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => WopTrackerAddUIWrapper(userId: widget.userId,docId: result,editMode: false,)),
+              MaterialPageRoute(builder: (context) => WopTrackerAddUIWrapper(userId: widget.user.uid,docId: result,editMode: false,)),
             );
           } else {
             ScaffoldMessenger.of(context).showSnackBar(snackBar);

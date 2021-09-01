@@ -15,7 +15,7 @@ class WopTrackerMobileWrapper extends ConsumerWidget {
     AsyncValue<User?> _user = ref.watch(userProvider);
     
     if(_user.data != null) {
-      return WopTrackerStreamMobileUI(userId: _user.data!.value!.uid);
+      return WopTrackerStreamMobileUI(user: _user.data!.value!);
     } else {
       return Loading();
     }
